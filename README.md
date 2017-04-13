@@ -1,7 +1,7 @@
 # Shouty
 
 Shouty is a social networking application for short physical distances.
-When someone shouts, only people within 500m kan hear it.
+When someone shouts, only people within 1000m can hear it.
 
 Shouty doesn't exist yet - you will implement it yourself!
 
@@ -14,12 +14,13 @@ That is, if you're attending a BDD/Cucumber course.
 Git:
 
     git clone https://github.com/cucumber-ltd/shouty.rb.git
-    cd shouty.java
+    cd shouty.rb
+    git checkout YYYY-MM-DD
 
 Subversion:
 
-    svn checkout https://github.com/cucumber-ltd/shouty.rb
-    cd shouty.java
+    svn checkout https://github.com/cucumber-ltd/shouty.rb/branches/YYYY-MM-DD shouty.rb
+    cd shouty.rb
 
 Or simply [download](https://github.com/cucumber-ltd/shouty.rb/releases) a zip or tarball.
 
@@ -37,7 +38,23 @@ You might already have ruby installed. Check if it's an old one:
 If this is `1.9.3` or more recent you're good to go. If not, install ruby with
 [ruby-install](https://github.com/postmodern/ruby-install):
 
-    ruby-install ruby 2.1
+    # OS X
+    brew update
+    brew install rbenv ruby-install
+
+    # Ubuntu
+    apt-get install rbenv ruby-install
+
+    # Install ruby
+    rbenv install 2.2.0
+
+In addition to Ruby you'll also need a C compiler to install some of the libraries. Check if you already have one:
+
+    gcc --version
+
+If you don't have `gcc` installed you can install it with the following command:
+
+    xcode-select --install
 
 ### Install a Text editor
 
@@ -49,13 +66,26 @@ Any text editor will work, but if you don't have one we recommend
 The steps below might fail if you're behind a proxy. See the HTTP_PROXY section
 for details and try again when you have set the proxy.
 
-* Run `gem install bundler`
-* Run `bundle`
-* Run `cucumber`
+* `gem install bundler`
+* `bundle` - this will install cucumber
+* `cucumber` - this runs cucumber!
 
 You should see:
 
     1 scenario (1 passed)
+
+#### Windows troubleshooting
+
+If you get an error installing gems,
+create a file in `C:\Users\YOURNAME\.gemrc` with:
+
+```yaml
+# Download gems with http instead of https
+:sources:
+- http://rubygems.org
+```
+
+You'll also need to change your `Gemfile` to use `http` if you have this problem.
 
 ### HTTP_PROXY
 
